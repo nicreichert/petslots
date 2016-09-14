@@ -82,7 +82,8 @@ function Game() {
     };
 
     function updateScore(s) {
+    	const previousScore = score;
         score = s;
-        ui.updateScoreLabel(s);
+        ui.updateScoreLabel(previousScore, s);
     }
 };

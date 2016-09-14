@@ -4,12 +4,13 @@ function GameUi() {
 	self.onIncreaseCurrentBet;
 	self.onDecreaseCurrentBet;
 
-	var betLabel;
 	var coinsLabel;
 
 	var ui = this;
 
     var multiplierLabel;
+
+    var scoreLabel;
 
 	this.create = function() {
 		createSpinButton();
@@ -19,21 +20,16 @@ function GameUi() {
 	};
 
 	function createScoreLabel() {
-		coinsLabel = helper.parentCenter(createLabel({ x: 15, y: 20}));
-		helper.addToScene(createSquare(80, 40, {x: backgroundWidth / 2 - 40, y: backgroundHeight - 55}, coinsLabel));
-    };
+		scoreLabel = document.createElement("div");
+        scoreLabel.className = "score-label";
+        for (var i = 0; i < 7; i++) {
+            var entry = document.createElement("div");
+            entry.className = "entry";
 
-    function createLabel(pos) {
-    	const l = new PIXI.Text("", {font:"50px Arial", fill:"white"})
-    	l.position = pos;
-    	return l;
-    };
+            scoreLabel.appendChild(entry);
+        }
 
-    function createSquare(width, height, pos, child) {
-    	const square = helper.createSquare(0, 0, width, height);
-		square.position = pos;
-        square.addChild(child);
-        return square;
+        helper.addToStage(scoreLabel);
     };
 
     function createSpinButton() {
@@ -91,13 +87,31 @@ function GameUi() {
             complete: function() {
                 $(multiplierLabel).hide();
             }
-        })
+        });
     };
 
-    this.updateScoreLabel = function(amount) {
-    	coinsLabel.text = amount ? amount : "0";
-    	return this;
+    this.updateScoreLabel = function(previousScore, currentScore) {
+        $({ s: previousScore }).animate({ s: currentScore }, {
+            duration: "slow",
+            step: function(now) {
+                updateScoreLabelValue(now.toFixed(0));
+            }
+        });
     };
+
+    function updateScoreLabelValue(amount) {
+        const amountString = amount.toString().reverse();
+        const entries = $(scoreLabel).find(".entry");
+
+        for (var i = 0; i < entries.length; i++) {
+            if (i < amountString.length) {
+                entries[i].innerHTML = amountString[i];
+            }
+            else {
+                entries[i].innerHTML = "0";
+            }
+        };
+    }
 
     return this;
 };

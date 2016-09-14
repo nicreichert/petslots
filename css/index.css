@@ -57,6 +57,53 @@ p { color:white; margin-top: 30px; text-align: center }
 	overflow: hidden;
 }
 
+.score-label {
+	position: absolute;
+	left: 381px;
+	top: 23px;
+}
+
+.entry {
+	position: absolute;
+	background: url('../images/number.png');
+	background-size: 100% 100%;
+	width: 44px;
+	height: 59px;
+	top: 0;
+	font-size: 50px;
+	font-family: Mesquite;
+	text-align: center;
+	line-height: 70px;
+}
+
+.score-label .entry:nth-child(7) {
+	left: 0;
+}
+
+.score-label .entry:nth-child(6) {
+	left: 50px;
+}
+
+.score-label .entry:nth-child(5) {
+	left: 100px;
+}
+
+.score-label .entry:nth-child(4) {
+	left: 150px;
+}
+
+.score-label .entry:nth-child(3) {
+	left: 200px;
+}
+
+.score-label .entry:nth-child(2) {
+	left: 250px;
+}
+
+.score-label .entry:nth-child(1) {
+	left: 300px;
+}
+
 .logo {
 	position: absolute;
 	background: url('../images/logo.png');
