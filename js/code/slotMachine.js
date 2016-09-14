@@ -15,6 +15,7 @@ function SlotMachine(totalReels) {
 	var currentReelToStop = 0;
 
 	this.onAllowStop;
+	this.onAllReelsStopped;
 
 	const slotMachine = this;
 
@@ -88,6 +89,9 @@ function SlotMachine(totalReels) {
 			return;
 
 		stopReelSpin(reels[currentReelToStop++]);
+
+		if (currentReelToStop == totalReels)
+			this.onAllReelsStopped();
 	}
 
 	function stopReelSpin(reel) {

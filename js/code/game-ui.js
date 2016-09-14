@@ -12,6 +12,8 @@ function GameUi() {
 
     var scoreLabel;
 
+    var spinButton;
+
 	this.create = function() {
 		createSpinButton();
 		createScoreLabel();
@@ -33,13 +35,13 @@ function GameUi() {
     };
 
     function createSpinButton() {
-        const button = document.createElement("button");
-        button.className = "spin-button";
-        button.onclick = function() {
+        spinButton = document.createElement("button");
+        spinButton.className = "spin-button";
+        spinButton.onclick = function() {
             ui.onSpin();
         };
 
-        helper.addToStage(button);
+        helper.addToStage(spinButton);
     };
 
     function createGameLogo() {
@@ -88,6 +90,14 @@ function GameUi() {
                 $(multiplierLabel).hide();
             }
         });
+    };
+
+    this.toggleSpinButton = function() {
+        spinButton.disabled = !spinButton.disabled;
+    };
+
+    this.toggleStop = function() {
+        $(spinButton).toggleClass("spinning");
     };
 
     this.updateScoreLabel = function(previousScore, currentScore) {

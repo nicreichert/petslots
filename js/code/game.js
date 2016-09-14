@@ -43,6 +43,7 @@ function Game() {
 		canStop = false;
 
 		slotMachine.spin(spinResult);
+		ui.toggleSpinButton();
 	};
 
 	function spinResult(win) {
@@ -59,6 +60,8 @@ function Game() {
 		}
 		
 		isSpinning = false;
+		ui.toggleStop();
+		ui.toggleSpinButton();
     };
 
     function gameLoop() {
@@ -69,6 +72,7 @@ function Game() {
 
     function ready() {
     	slotMachine.onAllowStop = onAllowStop;
+    	slotMachine.onAllReelsStopped = onAllReelsStopped;
     	slotMachine.create();
     	ui.create();
     	ui.onSpin = spin;
@@ -76,10 +80,14 @@ function Game() {
     };
 
     function onAllowStop() {
-
         canStop = true;
-
+        ui.toggleStop();
+        ui.toggleSpinButton();
     };
+
+    function onAllReelsStopped() {
+    	ui.toggleSpinButton();
+    }
 
     function updateScore(s) {
     	const previousScore = score;
