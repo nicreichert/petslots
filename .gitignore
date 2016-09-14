@@ -1,0 +1,9 @@
+# mac
+.DS_Store
+
+# IntelliJ module
+*.iml
+/.idea
+
+# Sublime project files
+*.sublime-*
