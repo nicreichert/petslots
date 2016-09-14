@@ -18,6 +18,10 @@ function Game() {
 		PIXI.loader
 			.add(helper.createSlotTypeFileNameArray(Slots))
 			.add("images/machine.png")
+			.add("images/number.png")
+			.add("images/logo.png")
+			.add("images/btn-spin.png")
+			.add("images/btn-stop.png")
 			.on('progress', onProgressCallback)
 			.load(ready);
 
