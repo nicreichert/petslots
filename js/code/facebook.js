@@ -6,7 +6,7 @@ function Facebook() {
 		$.getScript('//connect.facebook.net/en_US/sdk.js', function(){
 			FB.init({
 				appId: '1782765781940954',
-				version: 'v2.7' // or v2.1, v2.2, v2.3, ...
+				version: 'v2.7'
 			});
 		});
 	};
@@ -37,7 +37,6 @@ function Facebook() {
 		    name: 'My PetSlot Score!',
 		    description: 'Post PetSlot Score on Wall.'
 		},function(data) {
-		    // console.log(data);
 		    callback();
 		});
 	}
@@ -45,14 +44,9 @@ function Facebook() {
 	this.login = function(successCallback) {
 		FB.login(function(response) {
 			if (response.authResponse) {
-				console.log('Welcome!  Fetching your information.... ');
-				FB.api('/me', function(response) {
-					console.log('Good to see you, ' + response.name + '.');
-				});
-
 				successCallback();
 			} else {
-				console.log('User cancelled login or did not fully authorize.');
+				// TODO: handle connection failed/aborted.
 			}
 		}, {scope:"publish_actions"});
 	};
