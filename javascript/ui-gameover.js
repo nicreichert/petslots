@@ -5,6 +5,8 @@ function GameOver() {
 	var restartGame;
 	var shareResult;
 
+	const parent = "body";
+
 	this.create = function() {
 		gameOverScreen = document.createElement("div");
 		gameOverScreen.className = "game-over";
@@ -24,7 +26,7 @@ function GameOver() {
 		gameOverScreen.appendChild(shareResultButton);
 		gameOverScreen.appendChild(restartGameButton);
 
-		helper.addToStage(gameOverScreen);
+		helper.addToParent(parent, gameOverScreen);
 	};
 
 	function onNewGameButtonPressed() {

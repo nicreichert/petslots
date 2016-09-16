@@ -16,6 +16,8 @@ function GameUi() {
 
     const gameOver = GameOver();
 
+    const parent = "body";
+
 	this.create = function() {
 		createSpinButton();
 		createScoreLabel();
@@ -35,7 +37,7 @@ function GameUi() {
             scoreLabel.appendChild(entry);
         }
 
-        helper.addToStage(scoreLabel);
+        helper.addToParent(parent, scoreLabel);
     };
 
     function createSpinButton() {
@@ -45,14 +47,14 @@ function GameUi() {
             ui.onSpin();
         };
 
-        helper.addToStage(spinButton);
+        helper.addToParent(parent, spinButton);
     };
 
     function createGameLogo() {
         const div = document.createElement("div");
         div.className = "logo";
 
-        helper.addToStage(div);
+        helper.addToParent(parent, div);
     };
 
     function createMultiplierLabel() {
@@ -60,7 +62,7 @@ function GameUi() {
         multiplierLabel.className = "multiplier";
         $(multiplierLabel).hide();
 
-        helper.addToStage(multiplierLabel);
+        helper.addToParent(parent, multiplierLabel);
     };
 
     this.showMultiplierLabel = function(multiplier) {

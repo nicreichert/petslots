@@ -17,8 +17,8 @@ function Helper() {
     	stage.addChild(sprite);
     };
 
-    this.addToStage = function(component) {
-        container.appendChild(component);
+    this.addToParent = function(parent, component) {
+        $(parent).append(component);
     };
 
     this.removeFromScene = function(sprite) {
