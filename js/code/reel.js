@@ -122,7 +122,7 @@ function Reel(totalSlots, colId, mask) {
 			duration: animationSpeed * 2,
 			easing: "easeOutElastic",
 			step: function(now) {
-				positionX = now;
+				positionX = Math.round(now);
 				positionSlotsInCol();
 			},
 			complete: function() {

@@ -106,7 +106,7 @@ function SlotMachine(totalReels) {
 
 		isSpinning = false;
 
-		onSpinEnded(gameResult.calculateResult(resultReels));
+		onSpinEnded(gameResult.calculateResult(resultReels), resultReels);
 	};
 
 	return this;

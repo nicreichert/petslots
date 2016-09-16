@@ -102,7 +102,7 @@ function GameUi() {
 
     this.updateScoreLabel = function(previousScore, currentScore) {
         $({ s: previousScore }).animate({ s: currentScore }, {
-            duration: "slow",
+            duration: 1000,
             step: function(now) {
                 updateScoreLabelValue(now.toFixed(0));
             }
