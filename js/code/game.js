@@ -56,8 +56,18 @@ function Game() {
 			ui.showMultiplierLabel(multiplier);
 		}
 		else if (score > 0){
-			updateScore(0);
-			multiplier = 0;
+
+			function concludeGameOver() {
+				updateScore(0);
+				multiplier = 0;
+			};
+
+			function shareScore() {
+				facebook.requestPostScore(score);
+			};
+
+			ui.gameOver(concludeGameOver, shareScore);
+			// facebook.requestPostScore(score);
 		}
 		
 		isSpinning = false;
@@ -95,6 +105,10 @@ function Game() {
     function updateScore(s) {
     	const previousScore = score;
         score = s;
-        ui.updateScoreLabel(previousScore, s);
+
+        if (!score)
+        	ui.updateScoreLabelValue(score)
+        else
+	        ui.updateScoreLabel(previousScore, s);
     }
 };

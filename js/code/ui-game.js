@@ -14,11 +14,15 @@ function GameUi() {
 
     var spinButton;
 
+    const gameOver = GameOver();
+
 	this.create = function() {
 		createSpinButton();
 		createScoreLabel();
         createGameLogo();
         createMultiplierLabel();
+
+        gameOver.create();
 	};
 
 	function createScoreLabel() {
@@ -104,12 +108,12 @@ function GameUi() {
         $({ s: previousScore }).animate({ s: currentScore }, {
             duration: 1000,
             step: function(now) {
-                updateScoreLabelValue(now.toFixed(0));
+                ui.updateScoreLabelValue(now.toFixed(0));
             }
         });
     };
 
-    function updateScoreLabelValue(amount) {
+    this.updateScoreLabelValue = function(amount) {
         const amountString = amount.toString().reverse();
         const entries = $(scoreLabel).find(".entry");
 
@@ -122,6 +126,10 @@ function GameUi() {
             }
         };
     }
+
+    this.gameOver = function(restart, share) {
+        gameOver.showGameOverScreen(restart, share);
+    };
 
     return this;
 };

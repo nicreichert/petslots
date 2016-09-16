@@ -6,18 +6,29 @@ function Facebook() {
 		$.getScript('//connect.facebook.net/en_US/sdk.js', function(){
 			FB.init({
 				appId: '1782765781940954',
-				version: 'v2.2' // or v2.1, v2.2, v2.3, ...
+				version: 'v2.7' // or v2.1, v2.2, v2.3, ...
 			});
-
-			FB.getLoginStatus(updateStatusCallback);
 		});
 	};
 
-	function updateStatusCallback() {
+	this.requestPostScore = function(score, callback) {
 
+		FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+				// var uid = response.authResponse.userID;
+				// var accessToken = response.authResponse.accessToken;
+
+				postScore(score, callback);
+			} 
+			else {
+				fb.login(function() {
+					postScore(score, callback);
+				});
+			}
+		});
 	};
 
-	this.postScore = function(score) {
+	function postScore(score) {
 		var body = 'Hey! I just scored ' + score + ' points on PetSlot!';
 		FB.api('/me/feed', 'post', {
 		    message:body,
@@ -26,17 +37,20 @@ function Facebook() {
 		    name: 'My PetSlot Score!',
 		    description: 'Post PetSlot Score on Wall.'
 		},function(data) {
-		    console.log(data);
+		    // console.log(data);
+		    callback();
 		});
-	};
+	}
 
-	this.login = function() {
+	this.login = function(successCallback) {
 		FB.login(function(response) {
 			if (response.authResponse) {
 				console.log('Welcome!  Fetching your information.... ');
 				FB.api('/me', function(response) {
 					console.log('Good to see you, ' + response.name + '.');
 				});
+
+				successCallback();
 			} else {
 				console.log('User cancelled login or did not fully authorize.');
 			}
