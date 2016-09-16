@@ -1,0 +1,15 @@
+{
+	"images": 
+	[
+		{ "url": "images/bear.png" },
+		{ "url": "images/btn-spin.png" },
+		{ "url": "images/btn-stop.png" },
+		{ "url": "images/cat.png" },
+		{ "url": "images/dog.png" },
+		{ "url": "images/fox.png" },
+		{ "url": "images/logo.png" },
+		{ "url": "images/machine.png" },
+		{ "url": "images/number.png" },
+		{ "url": "images/penguin.png" }
+	]
+}

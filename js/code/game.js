@@ -1,6 +1,3 @@
-const helper = new Helper();
-const game = new Game();
-
 function Game() {
 	const totalReels = 3;
 	var slotMachine = new SlotMachine(totalReels);
@@ -15,19 +12,19 @@ function Game() {
 	const points = 100;
 
 	this.init = function() {
-		PIXI.loader
-			.add(helper.createSlotTypeFileNameArray(Slots))
-			.add("images/machine.png")
-			.add("images/number.png")
-			.add("images/logo.png")
-			.add("images/btn-spin.png")
-			.add("images/btn-stop.png")
+		$.getJSON("json/images.json", function(json, text) {
+			const images = [];
+			$.each(json.images, function(i, img) {
+				images.push(img);
+			});
+
+			PIXI.loader
+			.add(images)
 			.on('progress', onProgressCallback)
 			.load(ready);
+		});
 
 		container.appendChild(renderer.view);
-
-		requestAnimationFrame(gameLoop);
 	};
 
 	function onProgressCallback(progress) {
@@ -58,7 +55,7 @@ function Game() {
 			updateScore(newScore);
 			ui.showMultiplierLabel(multiplier);
 		}
-		else {
+		else if (score > 0){
 			updateScore(0);
 			multiplier = 0;
 		}
@@ -81,6 +78,8 @@ function Game() {
     	ui.create();
     	ui.onSpin = spin;
     	updateScore(0);
+
+		requestAnimationFrame(gameLoop);
     };
 
     function onAllowStop() {
