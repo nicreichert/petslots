@@ -8,7 +8,7 @@ function Facebook() {
 				appId: '1782765781940954',
 				version: 'v2.2' // or v2.1, v2.2, v2.3, ...
 			});
-			fb.login();
+
 			FB.getLoginStatus(updateStatusCallback);
 		});
 	};
