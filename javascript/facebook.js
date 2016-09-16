@@ -50,4 +50,5 @@ function Facebook() {
 	};
 
 	return this;
-}
+};
+

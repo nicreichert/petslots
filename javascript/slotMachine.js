@@ -111,3 +111,4 @@ function SlotMachine(totalReels) {
 
 	return this;
 };
+

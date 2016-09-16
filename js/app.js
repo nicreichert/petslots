@@ -13,3 +13,4 @@ $(function() {
 
 	game.init();
 });
+

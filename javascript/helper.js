@@ -106,4 +106,5 @@ PIXI.Graphics.prototype.setInteractive = function(val) {
 
 String.prototype.reverse = function() {
     return this.split('').reverse().join('');
-}
+};
+

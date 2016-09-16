@@ -21,3 +21,4 @@ function Slot(slotType, mask, reelId) {
 
  	return this;
 };
+

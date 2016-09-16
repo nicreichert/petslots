@@ -29,7 +29,7 @@ function Game() {
 
 	function onProgressCallback(progress) {
 		// console.log(progress.progress);
-	}
+	};
 
 	function spin() {
 		if (isSpinning && canStop) {
@@ -100,7 +100,7 @@ function Game() {
 
     function onAllReelsStopped() {
     	ui.toggleSpinButton();
-    }
+    };
 
     function updateScore(s) {
     	const previousScore = score;
@@ -110,5 +110,6 @@ function Game() {
         	ui.updateScoreLabelValue(score)
         else
 	        ui.updateScoreLabel(previousScore, s);
-    }
+    };
 };
+
