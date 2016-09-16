@@ -15,9 +15,6 @@ function Facebook() {
 
 		FB.getLoginStatus(function(response) {
 			if (response.status === 'connected') {
-				// var uid = response.authResponse.userID;
-				// var accessToken = response.authResponse.accessToken;
-
 				postScore(score, callback);
 			} 
 			else {
@@ -28,7 +25,7 @@ function Facebook() {
 		});
 	};
 
-	function postScore(score) {
+	function postScore(score, callback) {
 		var body = 'Hey! I just scored ' + score + ' points on PetSlot!';
 		FB.api('/me/feed', 'post', {
 		    message:body,
@@ -37,7 +34,8 @@ function Facebook() {
 		    name: 'My PetSlot Score!',
 		    description: 'Post PetSlot Score on Wall.'
 		},function(data) {
-		    callback();
+			if (callback)
+			    callback();
 		});
 	}
 

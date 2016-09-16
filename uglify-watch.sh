@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT_FILE=js/scripts.min.js
-INPUT_FILE=js/code/*.js
+INPUT_FILE=javascript/*.js
 FILES=""
 FILES_ARRAY=[]
 TIMES_ARRAY=[]

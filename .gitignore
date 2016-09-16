@@ -7,3 +7,6 @@
 
 # Sublime project files
 *.sublime-*
+
+# Compass
+/.sass-cache
