@@ -5,7 +5,9 @@ function GameOver() {
 	var restartGame;
 	var shareResult;
 
-	const parent = "body";
+	const parent = ".game-container";
+
+	const fadeTime = 100;
 
 	this.create = function() {
 		gameOverScreen = document.createElement("div");
@@ -36,7 +38,7 @@ function GameOver() {
 		restartGame();
 		restartGame = null;
 
-		$(gameOverScreen).fadeOut("slow");
+		$(gameOverScreen).fadeOut(fadeTime);
 	};
 
 	function onShareResultButtonPressed() {
@@ -48,7 +50,7 @@ function GameOver() {
 		restartGame = restart;
 		shareResult = share;
 
-		$(gameOverScreen).fadeIn("slow");
+		$(gameOverScreen).fadeIn(fadeTime);
 	};
 
 	return this;

@@ -4,19 +4,16 @@ function GameUi() {
 	self.onIncreaseCurrentBet;
 	self.onDecreaseCurrentBet;
 
-	var coinsLabel;
-
 	var ui = this;
 
     var multiplierLabel;
-
     var scoreLabel;
-
     var spinButton;
+    var coinsLabel;
 
     const gameOver = GameOver();
 
-    const parent = "body";
+    const parent = ".game-container";
 
 	this.create = function() {
 		createSpinButton();
@@ -88,7 +85,6 @@ function GameUi() {
     function hideMultiplierLabel() {
         $({ s: 1 }).animate({ s: 0 }, {
             duration: 100,
-            easing: "linear",
             step: function(now) {
                 $(multiplierLabel).css("transform", "scale(" + now + ", " + now + ")");
             },
@@ -127,7 +123,7 @@ function GameUi() {
                 entries[i].innerHTML = "0";
             }
         };
-    }
+    };
 
     this.gameOver = function(restart, share) {
         gameOver.showGameOverScreen(restart, share);
