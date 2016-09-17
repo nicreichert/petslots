@@ -11,6 +11,8 @@ function Game() {
 	var multiplier = 0;
 	const points = 100;
 
+	var previousTime = 0;
+
 	this.init = function() {
 		$.getJSON("json/images.json", function(json, text) {
 			const images = [];
@@ -75,7 +77,9 @@ function Game() {
 		ui.toggleSpinButton();
     };
 
-    function gameLoop() {
+    function gameLoop(step) {
+    	updateDeltaTime(step);
+
     	requestAnimationFrame(gameLoop);
     	slotMachine.update();
     	renderer.render(stage);
@@ -110,6 +114,12 @@ function Game() {
         	ui.updateScoreLabelValue(score)
         else
 	        ui.updateScoreLabel(previousScore, s);
+    };
+
+    function updateDeltaTime(step) {
+    	currentTime = step
+    	deltaTime = (currentTime - previousTime) / 1000;
+    	previousTime = currentTime;
     };
 };
 

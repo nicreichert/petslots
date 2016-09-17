@@ -15,7 +15,7 @@ function Reel(totalSlots, colId, mask) {
 	const anchorPosY = 155 + (this.id * deltaPosY);
 
 	var spinSpeed = 0;
-	const maxSpinSpeed = 30;
+	const maxSpinSpeed = 2000;
 
 	const animationSpeed = 500;
 
@@ -24,7 +24,7 @@ function Reel(totalSlots, colId, mask) {
 
 	const reel = this;
 
-	Reel.prototype.create = function() {
+	this.create = function() {
 		for(var i = 0; i < totalSlots; i++) {
 
 			var slot = new Slot(Slots[i % Slots.length], mask, this.id);
@@ -68,11 +68,13 @@ function Reel(totalSlots, colId, mask) {
 	};
 
 	function moveSlotsWithSpeed(speed) {
+		const delta = speed * deltaTime;
+
 		$.each(slots, function(i, slot) {
-			slot.sprite.position.x = moveLeft ? slot.sprite.position.x - speed : slot.sprite.position.x + speed;
+			slot.sprite.position.x = moveLeft ? slot.sprite.position.x - delta : slot.sprite.position.x + delta;
 		});
 
-		positionX = moveLeft ? positionX - speed : positionX + speed;
+		positionX = moveLeft ? positionX - delta : positionX + delta;
 
 		if (Math.abs(positionX) >= deltaPosX)
 			resetColPosition();
