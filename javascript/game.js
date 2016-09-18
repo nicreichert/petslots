@@ -13,6 +13,8 @@ function Game() {
 
 	var previousTime = 0;
 
+	const maxScore = 9999999;
+
 	this.init = function() {
 		$.getJSON("json/images.json", function(json, text) {
 			const images = [];
@@ -54,6 +56,12 @@ function Game() {
 			multiplier++;
 			var newScore = score + (multiplier * points);
 
+			if (newScore >= maxScore) {
+				newScore = maxScore;
+
+				// TODO: create max score screen
+			}
+
 			updateScore(newScore);
 			ui.showMultiplierLabel(multiplier);
 		}
@@ -69,7 +77,6 @@ function Game() {
 			};
 
 			ui.gameOver(concludeGameOver, shareScore);
-			// facebook.requestPostScore(score);
 		}
 		
 		isSpinning = false;
